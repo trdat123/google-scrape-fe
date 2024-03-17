@@ -1,33 +1,49 @@
-import { useCallback, useEffect, useState } from "react";
-import { Badge } from "./components/ui/badge";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { Badge } from "./ui/badge";
 import { useNavigate } from "react-router-dom";
-import apiCall from "./functions/apiCall";
-import formatDate from "./functions/formatDate";
+import apiCall from "../functions/apiCall";
+import formatDate from "../functions/formatDate";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./Spinner";
+import Center from "./Center";
 
 const KeywordSetCard = () => {
     const [keywordSets, setKeywordSets] = useState<[]>();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { user } = useAuth0();
+
+    useLayoutEffect(() => {
+        setLoading(true);
+    }, []);
 
     useEffect(() => {
         getKeywordSets();
     }, []);
 
     const getKeywordSets = useCallback(async () => {
-        const response = await apiCall("GET", "api/getKeywordSets", { userId: 2 });
+        const response = await apiCall("GET", "api/getKeywordSets", { userEmail: user?.email });
         setKeywordSets(await response?.json());
+        setLoading(false);
     }, [keywordSets]);
 
     const getKeywordTable = useCallback(
         async (setId: number) => {
+            setLoading(true);
             const response = await apiCall("GET", "api/getKeywordSingleSet", { setId });
 
             const keywordSetData = await response?.json();
             navigate("/result", { state: keywordSetData });
+            setLoading(false);
         },
         [keywordSets]
     );
 
-    return (
+    return loading ? (
+        <Center>
+            <Loading />
+        </Center>
+    ) : (
         <div className="flex flex-col gap-2 p-4 pt-0">
             {keywordSets?.map((item: any) => (
                 <div

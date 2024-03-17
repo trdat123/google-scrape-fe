@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useLocation } from "react-router-dom";
-import { IKeyword } from "./types/IKeyword";
-import apiCall from "./functions/apiCall";
+import { IKeyword } from "../types/IKeyword";
+import apiCall from "../functions/apiCall";
 
 const KeywordTable = () => {
     const location = useLocation();
