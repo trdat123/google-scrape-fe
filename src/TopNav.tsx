@@ -1,34 +1,39 @@
-import { Button } from "./components/ui/button";
-import { ModeToggle } from "./components/mod-toggle";
 import {
-    Menubar,
-    MenubarContent,
-    MenubarItem,
-    MenubarMenu,
-    MenubarSeparator,
-    MenubarShortcut,
-    MenubarTrigger,
-} from "@/components/ui/menubar";
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+
+import { NavLink } from "react-router-dom";
 
 const TopNav = () => {
     return (
-        <Menubar className="mb-5">
-            <MenubarMenu>
-                <MenubarTrigger>File</MenubarTrigger>
-                <MenubarContent>
-                    <MenubarItem>
-                        New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-                    </MenubarItem>
-                    <MenubarItem>New Window</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Share</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Print</MenubarItem>
-                </MenubarContent>
-                <Button>See results</Button>
-                <ModeToggle />
-            </MenubarMenu>
-        </Menubar>
+        <div className="w-full h-28 flex items-center justify-center">
+            <NavigationMenu className="flex items-center justify-center">
+                <NavigationMenuList>
+                    <NavigationMenuItem>
+                        <NavLink className="text-sm font-bold mx-3" to="home">
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home page</NavigationMenuLink>
+                        </NavLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavLink className="text-sm font-bold mx-3" to="history">
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>History</NavigationMenuLink>
+                        </NavLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <NavigationMenuLink>Link</NavigationMenuLink>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                </NavigationMenuList>
+            </NavigationMenu>
+        </div>
     );
 };
 
