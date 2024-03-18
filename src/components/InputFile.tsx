@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import apiCall from "../functions/apiCall";
 import Loading from "./Spinner";
 import { useToast } from "./ui/use-toast";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const InputFile = () => {
     const [file, setFile] = useState<FileList | null>(null);
     const [loading, setLoading] = useState(false);
+    const { user } = useAuth0();
     const navigate = useNavigate();
     const { toast } = useToast();
 
@@ -43,7 +45,12 @@ const InputFile = () => {
                 setLoading(false);
             }
 
-            const response = await apiCall("POST", "api/addKeywordSet", null, JSON.stringify(keywords));
+            const response = await apiCall(
+                "POST",
+                "api/addKeywordSet",
+                { userEmail: user?.email, userName: user?.nickname },
+                JSON.stringify(keywords)
+            );
 
             const data = await response?.json();
 
@@ -59,7 +66,7 @@ const InputFile = () => {
 
     return (
         <div className="z-10 w-full h-[calc(100vh-130px)] flex items-center justify-center">
-            {loading ? <Loading isToast /> : <Dropzone setFile={setFile} addKeywordSet={addKeywordSet} />}
+            {loading ? <Loading /> : <Dropzone setFile={setFile} addKeywordSet={addKeywordSet} />}
         </div>
     );
 };
