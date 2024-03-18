@@ -1,17 +1,40 @@
-# React + TypeScript + Vite
+# Google scape
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is for educational purpose.
 
-Currently, two official plugins are available:
+## Technology used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Front-end
 
-## Expanding the ESLint configuration
+-   Front-end uses [Vite](https://vitejs.dev/) + [React](https://react.dev/) + [Bun](https://bun.sh/): Vite for starting local server. Bun for installing dependencies. Both of them are blazingly fast.
+-   UI library: [shadcn/ui](https://ui.shadcn.com/examples/mail) and [Tailwindcss](https://tailwindcss.com/)
+-   Authentication: [Auth0](https://auth0.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Back-end
 
-- Configure the top-level `parserOptions` property like this:
+-   [Bun](https://bun.sh/) as JavaScript run time, managing dependencies, and testing
+-   Scraping library: [Puppeteer](https://pptr.dev/). Puppeteer will run Chrome or Chromium based browser in headless mode (Like a normal user). Allow it to do automate task and scraping data in browser easily.
+-   Database & ORM: [vercel/postgres](https://vercel.com/docs/storage/vercel-postgres) & [Drizzle](https://orm.drizzle.team/)
+-   API layer: [Express](https://expressjs.com/)
+
+---
+
+## Installation
+
+(Use for both front-end and back-end)
+
+-   Install Bun: See [Bun docs](https://bun.sh/)
+
+```
+curl -fsSL https://bun.sh/install | bash
+```
+
+```
+bun i
+```
+
+-   Add Env file to root folder
+-   Run server: `bun dev`
 
 ```js
    parserOptions: {
@@ -22,6 +45,6 @@ If you are developing a production application, we recommend updating the config
    },
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+-   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+-   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+-   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

@@ -68,10 +68,12 @@ const KeywordSetCard = () => {
                     </div>
                     {item.keywords.length ? (
                         <div className="flex items-center w-full gap-2 overflow-x-auto">
-                            {item.keywords.map((keyword: string) => (
-                                <Badge key={keyword} variant="secondary" className="my-2">
-                                    <p className="truncate overflow-hidden">{keyword}</p>
-                                </Badge>
+                            {item.keywords.map((keyword: string, i: number) => (
+                                <div key={i}>
+                                    <Badge key={keyword} variant="secondary" className="my-2">
+                                        <p className="truncate overflow-hidden">{keyword}</p>
+                                    </Badge>
+                                </div>
                             ))}
                         </div>
                     ) : null}

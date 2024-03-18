@@ -1,4 +1,17 @@
-const Loading = () => {
+import { useEffect } from "react";
+import { toast } from "./ui/use-toast";
+
+const Loading = ({ isToast }: { isToast?: boolean }) => {
+    isToast &&
+        useEffect(() => {
+            setTimeout(() => {
+                toast({
+                    title: "Processing",
+                    description: `Data set is large. Please wait...`,
+                });
+            }, 9000);
+        }, []);
+
     return (
         <div role="status">
             <svg

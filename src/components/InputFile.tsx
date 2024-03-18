@@ -47,7 +47,7 @@ const InputFile = () => {
 
             const data = await response?.json();
 
-            setLoading(true);
+            setLoading(false);
             navigate("/result", { state: data });
             toast({
                 title: "Scrape completed",
@@ -59,7 +59,7 @@ const InputFile = () => {
 
     return (
         <div className="z-10 w-full h-[calc(100vh-130px)] flex items-center justify-center">
-            {loading ? <Loading /> : <Dropzone setFile={setFile} addKeywordSet={addKeywordSet} />}
+            {loading ? <Loading isToast /> : <Dropzone setFile={setFile} addKeywordSet={addKeywordSet} />}
         </div>
     );
 };
