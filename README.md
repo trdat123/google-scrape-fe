@@ -33,18 +33,12 @@ curl -fsSL https://bun.sh/install | bash
 bun i
 ```
 
--   Add Env file to root folder
--   Run server: `bun dev`
+-   Add Env file to root folder. Env file are variables for Vercel database, Drizzle ORM, and Auth0 authentication
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+`.env.local` is for front-end.
+`.env` is for back-end.
 
--   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
--   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Due to sending env file manually. Make sure to add the dot symbol at the start of file name.
+
+-   To run server: `bun dev`
+-   To run test: `bun test`
